@@ -12,7 +12,7 @@ Spree::Stock::Estimator.class_eval do
          valid = valid && ship_method.pickupable if order.pickup?
          valid
       rescue Exception => exception
-        log_calculator_exception(ship_method, exception)
+        Rails.logger.error(exception)
       end
     end
   end
