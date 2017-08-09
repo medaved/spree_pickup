@@ -3,6 +3,7 @@ fr:
     ensure_pickup_or_ship_address_present: Vous devez spécifier une adresse de livraison ou de ramassage
     greater_than_start_time: doit être plus grand que l’heure de début
     pickup_address: Adresse de ramassage
+    dispatch: Livrer
     shipment_states:
       delivered: livré
       ready_for_pickup: prêt pour ramassage
