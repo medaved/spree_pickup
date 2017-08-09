@@ -29,17 +29,17 @@ MapInitializer.prototype.bindEvent = function() {
     if(!_this.mapDiv.hasClass('hide')) {
       _this.initializeMap();
       _this.setCenter();
-      _this.setMarker();
+      _this.setMarkers();
     }
   })
 }
 
-MapInitializer.prototype.setMarker = function() {
+MapInitializer.prototype.setMarkers = function() {
   var _this = this;
   $.each(this.data, function(index, value) {
     marker = _this.addMarker(index, value);
     _this.addInfoWindow(marker, value.name);
-  })
+  });
 };
 
 MapInitializer.prototype.addInfoWindow = function(marker, info) {
@@ -68,7 +68,16 @@ MapInitializer.prototype.imageUrlBuilder = function(value) {
 
 MapInitializer.prototype.setCenter = function() {
   var _this = this;
-  if(_this.default_country) {
+  if (this.data) {
+    latlngbounds = new google.maps.LatLngBounds();
+    this.data.map(function(value) {
+      return new google.maps.LatLng(value.latitude, value.longitude);
+    }).map(function(latLng) {
+      latlngbounds.extend(latLng);
+    });
+    _this.map.setCenter(latlngbounds.getCenter());
+    _this.map.fitBounds(latlngbounds);
+  } else if(_this.default_country) {
     this.geocoder.geocode( { 'address': _this.default_country }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         _this.map.setCenter(results[0].geometry.location);
