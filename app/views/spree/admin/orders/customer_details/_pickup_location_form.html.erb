@@ -1,7 +1,7 @@
 <% pickup_location_present = f.object.pickup_location.present? %>
 <% selected_country_id = pickup_location_present ? f.object.pickup_location.address.country_id : Spree::Country.default.id %>
 <% selected_country_states = pickup_location_present ? f.object.pickup_location.address.country.states : Spree::Country.default.states %>
-<% selected_state_id = f.object.pickup_location.address.state_id if pickup_location_present %>
+<% selected_state_id = f.object.try(:pickup_location).try(:address).try(:state_id) || f.object.billing_address.state_id %>
 <div class='row'>
   <div data-hook="pickup_wrapper">
     <div class="form-group col-md-4" data-hook="pickup_location_country">
@@ -41,7 +41,7 @@
       var pickupCheckout = new PickupCheckout($('#pickup_address'), $('#shipping_address'));
       var pickupLocationGetter = new PickupLocationGetter('<%= api_pickup_locations_search_path %>');
       pickupLocationGetter.init();
-      <% if pickup_location_present %>
+      <% if pickup_location_present || selected_state_id  %>
         $('#state').find('select').trigger('change');
       <% end %>
       pickupCheckout.init();
