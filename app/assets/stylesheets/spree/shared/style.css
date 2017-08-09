@@ -4,12 +4,12 @@
 }
 
 .pickup-panel  .panel-body {
-  padding: 5px 20px ;
+  padding: 0.8em 1.2em;
 }
 .pickup-panel .img-label {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 2em;
+  top: 0.8em;
 }
 
 .select-width {
@@ -40,6 +40,7 @@
     position: relative;
     line-height: 2.5em;
     text-indent: 3.25em;
+    padding-right: 1em;
     margin-top: 2em;
     cursor: pointer;
     -webkit-user-select: none;
