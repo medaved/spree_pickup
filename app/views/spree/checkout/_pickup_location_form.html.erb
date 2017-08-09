@@ -44,6 +44,9 @@
         $('#state').find('select').trigger('change');
       <% end %>
       pickupCheckout.init();
+
+      $("[data-hook='billing_fieldset_wrapper'] .form-group").addClass('col-sm-6')
+      $("[data-hook='billing_fieldset_wrapper'] #baddress1").addClass('col-sm-12')
     });
   <% end %>
 <% end %>
