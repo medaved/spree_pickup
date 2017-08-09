@@ -7,6 +7,7 @@ en:
     ensure_pickup_or_ship_address_present: Either Ship Address or Pickup Address must be present
     greater_than_start_time: must be greater than start time
     dispatch: Dispatch
+    toggle_map: Toggle Map
     shipment_states:
       delivered: delivered
       ready_for_pickup: ready for pickup

@@ -4,6 +4,7 @@ fr:
     greater_than_start_time: doit être plus grand que l’heure de début
     pickup_address: Adresse de ramassage
     dispatch: Livrer
+    toggle_map: Afficher la carte
     shipment_states:
       delivered: livré
       ready_for_pickup: prêt pour ramassage
