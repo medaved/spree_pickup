@@ -38,7 +38,7 @@ PickupListBuilder.prototype.buildPickupTemplate = function(index, pickupObject) 
       $pickupRadioDiv = $('<div/>', { class: 'funkyradio' }),
       $dispatchDiv = $('<div/>', { class: "pull-right dispatch funkyradio-warning" }),
       $radioInput = $('<input/>', {type: 'radio', name: "pickup_location", id: ('pickup_location_' + pickupObject.id) } ),
-      $radioLabel = $('<label/>', { for: ('pickup_location_' + pickupObject.id), text: '<%= Spree.t(:dispatch) %>' });
+      $radioLabel = $('<label/>', { for: ('pickup_location_' + pickupObject.id), text: 'Dispatch' });
 
   $localAddressDiv.append($localitySpan, $regionSpan, $zipcodeSpan, $countrySpan);
   $adrDiv.append($streetAddressDiv, $localAddressDiv);
