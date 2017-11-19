@@ -29,9 +29,7 @@ describe Spree::Admin::Orders::CustomerDetailsController, type: :controller do
           order_id: order.number,
           order: {
             email: "",
-            use_billing: "",
-            bill_address_attributes: {},
-            ship_address_attributes: {}
+            use_billing: ""
           },
           guest_checkout: 'true'
         }

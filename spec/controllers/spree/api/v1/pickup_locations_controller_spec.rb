@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::Api::PickupLocationsController, type: :controller do
+describe Spree::Api::V1::PickupLocationsController, type: :controller do
   let!(:pickup_locations) { FactoryGirl.create_list(:pickup_location, 2, address: address) }
   let(:state) { FactoryGirl.create(:state) }
   let(:address) { FactoryGirl.create(:address, state: state, country: state.country) }

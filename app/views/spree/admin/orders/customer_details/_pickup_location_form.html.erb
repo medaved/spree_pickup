@@ -1,7 +1,7 @@
 <% pickup_location_present = f.object.pickup_location.present? %>
 <% selected_country_id = pickup_location_present ? f.object.pickup_location.address.country_id : Spree::Country.default.id %>
 <% selected_country_states = pickup_location_present ? f.object.pickup_location.address.country.states : Spree::Country.default.states %>
-<% selected_state_id = f.object.pickup_location.address.state_id if pickup_location_present %>
+<% selected_state_id = f.object.try(:pickup_location).try(:address).try(:state_id) || f.object.billing_address.state_id %>
 <div class='row'>
   <div data-hook="pickup_wrapper">
     <div class="form-group col-md-4" data-hook="pickup_location_country">
@@ -17,7 +17,7 @@
       </span>
     </div>
     <div class='col-md-2'>
-      <a href="javascript:void(0)" class=' btn btn-warning toggle-map btn-xs hide'>Show/Hide Map</a>
+      <a href="javascript:void(0)" class=' btn btn-warning toggle-map btn-xs hide'><%= Spree.t(:toggle_map) %></a>
     </div>
     <%=f.hidden_field :pickup_location_id, class: 'pickup_id'%>
   </div>
@@ -41,7 +41,7 @@
       var pickupCheckout = new PickupCheckout($('#pickup_address'), $('#shipping_address'));
       var pickupLocationGetter = new PickupLocationGetter('<%= api_pickup_locations_search_path %>');
       pickupLocationGetter.init();
-      <% if pickup_location_present %>
+      <% if pickup_location_present || selected_state_id  %>
         $('#state').find('select').trigger('change');
       <% end %>
       pickupCheckout.init();
