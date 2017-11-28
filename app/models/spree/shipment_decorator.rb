@@ -1,6 +1,5 @@
 Spree::Shipment::FINALIZED_STATES = ['delivered', 'shipped', 'ready_for_pickup', 'shipped_for_pickup']
 Spree::Shipment.class_eval do
-
   scope :delivered, -> { with_state('delivered') }
   scope :shipped_for_pickup, -> { with_state('shipped_for_pickup') }
   scope :ready_for_pickup, -> { with_state('ready_for_pickup') }
@@ -33,16 +32,15 @@ Spree::Shipment.class_eval do
 
   private
 
-    def can_shipped?
-      order.can_ship?
-    end
+  def can_shipped?
+    order.can_ship?
+  end
 
-    def can_shipped_for_pickup?
-      order.pickup?
-    end
+  def can_shipped_for_pickup?
+    order.pickup?
+  end
 
-    def update_order_shipment
-      Spree::ShipmentHandler.factory(self).send :update_order_shipment_state
-    end
-
+  def update_order_shipment
+    Spree::ShipmentHandler.factory(self).send :update_order_shipment_state
+  end
 end
